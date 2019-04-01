@@ -1,54 +1,33 @@
-<head>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>
-</head>
-<body>
-<h3>BetterDoctor - Doctor Search Results</h3>
-<div id="content-placeholder"></div>
-<script id="docs-template" type="text/x-handlebars-template">
-    <table>
-        <thead>
-            <th>Name</th>
-            <th>Title</th>
-            <th>Picture</th>
-        </thead>
-        <tbody>
-        {{#data}}
-        <tr>
-            <td><a href="{{attribution_url}}" target="_new">{{profile.first_name}} {{profile.last_name}}</a><br>
-              <img src="{{ratings.0.image_url_small}}"></img></td>
-            <td>{{profile.title}}</td>
-            <td><img src="{{profile.image_url}}"></img></td>
-        </tr>
-        {{/data}}
-        </tbody>
-    </table>
-    <h3>BetterDoctor - {{data.profile.first_name}} {{data.profile.last_name}}, {{data.profile.title}}</h3>
-    <p class="address">
-        {{#data.practices}}
-        {{name}}<br>
-        {{visit_address.street}}<br>
-        {{visit_address.city}}, {{visit_address.state}} {{visit_address.zip}}
-        {{/data.practices}}
-    </p>
-    <p class="bio">{{data.profile.dynamic_bio}}</p>
-    <table>
-        <tr>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Doctor Lookup</title>
+  </head>
+  <body>
+    <div class="container">
+      <form id="Search">
+        <input id="Issue" type="text" placeholder="Enter Your Medical Issue" required><br>
 
-            <td><a href="{{data.attribution_url}}" target="_new">{{data.attribution_url}}</a></td>
-        </tr>
-        <tr>
-            <th>Picture</th>
-            <td><img src="{{data.profile.image_url}}"></img></td>
-        </tr>
-        <tr>
-            <th>Specialties</th>
-            <td>
-            {{#data.specialties}}
-            {{name}}<br>
-            {{/data.specialties}}
-            </td>
-        </tr>
-    </table>
-</script>
-</body>
+        <input id="Doctor" type="text" placeholder="Enter Your Doctor's Name" required><br>
+        <button type="submit" name="button">Search</button>
+      </form>
+
+      <div class="showIssue"></div>
+      <div class="showDoctor"></div>
+
+      display results here!!!
+
+      doctor info should return firstname, lastname, address, phonenumber, website, whether doctor is accepting new patients
+<br>
+
+      if api calls error, type of error should be returned
+<br>
+
+      if nothing returns say so
+
+
+
+    </div>
+  </body>
+</html>
