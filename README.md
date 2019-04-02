@@ -28,6 +28,12 @@ A website (using Javascript) where users may enter a medical issue (ie: “sore 
 * _Input **npm install** into the terminal to install dependancies_
 * _Input **npm run build** to build the application._
 * _Input **npm run start** to start the application._
+##### .env
+* _get an api key from https://developer.betterdoctor.com/_
+* _touch .env in DoctorLookup.Solution_
+* _in .env put "exports apiKey = key goes here"_
+
+
 
 ## Known Bugs
 
