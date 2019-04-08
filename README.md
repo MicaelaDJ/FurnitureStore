@@ -31,7 +31,7 @@ A website (using Javascript) where users may enter a medical issue (ie: “sore 
 ##### .env
 * _get an api key from https://developer.betterdoctor.com/_
 * _touch .env in DoctorLookup.Solution_
-* _in .env put "exports apiKey = key goes here"_
+* _in .env put "exports.apiKey = key goes here"_
 
 
 
