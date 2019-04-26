@@ -1,4 +1,4 @@
-# _Doctor Lookup_
+# _Furniture Store_
 
 #### _An web application for a doctor lookup, Created 3/29/19_
 
@@ -21,7 +21,7 @@ A website (using Javascript) where users may enter a medical issue (ie: “sore 
 ##### Installation
 * _Install Node.js to run the npm commands_
 ##### Clone the repository
-* _Please visit the Super Galactic Age Calculator repository <a href="https://github.com/MicaelaDJ/DoctorLookup.Solution">at this link</a>._
+* _Please visit the Super Galactic Age Calculator repository <a href="https://github.com/MicaelaDJ/FurnitureStore.Solution">at this link</a>._
 * _Clone repository or download to desktop_
 ##### Install, Build, and Run
 * _Navigate to the root project directory in the terminal_
@@ -30,7 +30,7 @@ A website (using Javascript) where users may enter a medical issue (ie: “sore 
 * _Input **npm run start** to start the application._
 ##### .env
 * _get an api key from https://developer.betterdoctor.com/_
-* _touch .env in DoctorLookup.Solution_
+* _touch .env in FurnitureStore.Solution_
 * _in .env put "exports.apiKey = key goes here"_
 
 

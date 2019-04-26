@@ -2,29 +2,34 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css'
-import Lookup from './lookup.js';
+import Store from './store.js';
 
 $(document).ready(function() {
   $('#Search').submit(function(event) {
     event.preventDefault;
-    let issue = $('#Issue').val();
-    let doctor = $('#Doctor').val();
+    let furnitureType = $('#FurnitureType').val();
 
-    let lookup = new Lookup();
-    let promise = lookup.returnSearch(issue, doctor);
+    let store = new Store();
+    let promise = store.returnSearch(furnitureType);
     promise.then(function(response) {
       let body = JSON.parse(response);
       console.log(body)
-      for(let i = 0; i < body.data.length; i++){
-        if (body.data[i].practices[0].website === undefined) {
-          $('.showDoctor').append(`Name: ${body.data[i].profile.first_name} ${body.data[i].profile.last_name} <br>Street: ${body.data[i].practices[0].visit_address.street},<br> City/State/Zip: ${body.data[i].practices[0].visit_address.city}, ${body.data[i].practices[0].visit_address.state} ${body.data[i].practices[0].visit_address.zip}<br>Phone Number: ${body.data[i].practices[0].phones[0].number}<br>Accepting New Patients: ${body.data[i].practices[0].accepts_new_patients}<br><br>`);
-          console.log("Dr. " + body.data[i].profile.last_name + " is available.");
-        } else {
-          $('.showDoctor').append(`Name: ${body.data[i].profile.first_name} ${body.data[i].profile.last_name} <br>Street: ${body.data[i].practices[0].visit_address.street},<br> City/State/Zip: ${body.data[i].practices[0].visit_address.city}, ${body.data[i].practices[0].visit_address.state} ${body.data[i].practices[0].visit_address.zip}<br>Phone Number: ${body.data[i].practices[0].phones[0].number}<br>Website: ${body.data[i].practices[0].website}<br>Accepting New Patients: ${body.data[i].practices[0].accepts_new_patients}<br><br>`);
-          console.log("Dr. " + body.data[i].profile.last_name + " is available.");
+      for(let i = 0; i < body.body.data.length; i++){
+
+        let item = body.body.data[i].type.includes(furnitureType)
+        if (item === true && body.body.data[i].stock < 1) {
+          $('.showFurnitureType').append(`<br>${body.body.data[i].name} <br> <img src=${body.body.data[i].imageUrl}> <br> ${body.body.data[i].description} <br> The available colors for this item are: ${body.body.data[i].colors}<br>Im sorry this item is out of stock at the moment<br><hr>`)
+        } else if (item === true && body.body.data[i].stock > 0 && body.body.data[i].deliverable === true) {
+          $('.showFurnitureType').append(`<br>${body.body.data[i].name} <br> <img src=${body.body.data[i].imageUrl}> <br> ${body.body.data[i].description} <br> The available colors for this item are: ${body.body.data[i].colors}<br>This item can be delivered!<br>There are ${body.body.data[i].stock} available<br><br><hr>`)
+        } else if (item === true && body.body.data[i].deliverable !== true) {
+          $('.showFurnitureType').append(`<br>${body.body.data[i].name} <br> <img src=${body.body.data[i].imageUrl}> <br> ${body.body.data[i].description} <br> The available colors for this item are: ${body.body.data[i].colors}<br>Unfortunately this item can not be delivered.<br>However there are ${body.body.data[i].stock} available for pick-up!<br><hr>`)
         }
+        // if (actualItem === true) {
+        //   $('.showFurnitureType').append(`<br>${body.body.data[i].name} <br> <img src=${body.body.data[i].imageUrl}> <br> ${body.body.data[i].description} <br> The available colors for this item are: ${body.body.data[i].colors}<br><br><hr>`)
+        // }
 
       }
+
     }, function(error) {
       $('.showErrors').append(`There was an error processing your request: ${error.message}`);
     });
